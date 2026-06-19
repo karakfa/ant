@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytic Number Theory — A Self-Study Reading List</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Serif+4:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f7f3ea;
+    --paper2: #f1ebdc;
+    --ink: #2a2521;
+    --ink2: #5c544a;
+    --ink3: #8a8073;
+    --rule: #d8cfb9;
+    --rule2: #c9bd9f;
+    --accent: #7a3b2e;
+    --accent2: #2f5747;
+    --tier0: #8a8073;
+    --tier1: #7a3b2e;
+    --tier2: #a8662f;
+    --tier3: #2f5747;
+    --tier4: #3a4a73;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 2.5rem 1.25rem 4rem; font-size: 15px; }
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1.5px solid var(--ink);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.85rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .dek {
+    font-size: 1.05rem;
+    color: var(--ink2);
+    max-width: 58ch;
+    line-height: 1.6;
+  }
+
+  .progress-rail {
+    display: flex;
+    gap: 4px;
+    margin-top: 1.75rem;
+  }
+
+  .progress-rail span {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .progress-rail span:nth-child(1) { background: var(--tier0); }
+  .progress-rail span:nth-child(2) { background: var(--tier1); }
+  .progress-rail span:nth-child(3) { background: var(--tier2); }
+  .progress-rail span:nth-child(4) { background: var(--tier3); }
+  .progress-rail span:nth-child(5) { background: var(--tier4); }
+
+  /* ---------- Tier sections ---------- */
+
+  .tier {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0 1.75rem;
+    margin-bottom: 3.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .tier { grid-template-columns: 40px 1fr; gap: 0 1rem; }
+  }
+
+  .tier-mark {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--paper);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 640px) {
+    .tier-mark { width: 34px; height: 34px; font-size: 11px; }
+  }
+
+  .tier:nth-of-type(1) .tier-mark { background: var(--tier0); }
+  .tier:nth-of-type(2) .tier-mark { background: var(--tier1); }
+  .tier:nth-of-type(3) .tier-mark { background: var(--tier2); }
+  .tier:nth-of-type(4) .tier-mark { background: var(--tier3); }
+  .tier:nth-of-type(5) .tier-mark { background: var(--tier4); }
+
+  .tier-head {
+    grid-column: 2;
+    margin-bottom: 1.1rem;
+  }
+
+  .tier-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 0.3rem;
+  }
+
+  .tier-title {
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .tier-body { grid-column: 2; }
+
+  /* ---------- Entry cards ---------- */
+
+  .entry {
+    border-left: 2px solid var(--rule);
+    padding: 0.15rem 0 0.15rem 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-title {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .entry-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink3);
+    margin-bottom: 0.55rem;
+  }
+
+  .entry-note {
+    color: var(--ink2);
+    font-size: 0.96rem;
+    line-height: 1.6;
+    margin-bottom: 0.65rem;
+  }
+
+  .entry-note + .entry-note { margin-top: -0.35rem; }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+    align-items: center;
+  }
+
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--paper2);
+    border: 1px solid var(--rule2);
+    border-radius: 20px;
+    padding: 0.32rem 0.75rem;
+    transition: background 0.12s, border-color 0.12s, transform 0.12s;
+  }
+
+  .link-chip:hover {
+    background: #fff;
+    border-color: var(--ink3);
+    transform: translateY(-1px);
+  }
+
+  .link-chip.video::before { content: "▶"; font-size: 8px; color: var(--accent); }
+  .link-chip.book::before { content: "○"; font-size: 10px; color: var(--accent2); }
+  .link-chip.notes::before { content: "▢"; font-size: 9px; color: var(--ink3); }
+
+  .no-link {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink3);
+    font-style: italic;
+  }
+
+  /* ---------- Divider note ---------- */
+
+  .aside {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+    margin: 0 0 3.25rem;
+    font-size: 0.93rem;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+
+  .aside strong { color: var(--ink); }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink3);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media print {
+    body { background: #fff; max-width: 100%; padding: 1.5rem; }
+    .link-chip { border: 1px solid #999; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Self-Study Reading List</div>
+  <h1>Analytic Number <em>Theory</em></h1>
+  <p class="dek">A basic-to-advanced reference list — textbooks, free lecture notes, and YouTube lectures — for a reader with a strong analysis background and no prior number theory.</p>
+  <div class="progress-rail"><span></span><span></span><span></span><span></span><span></span></div>
+</header>
+
+<!-- TIER 0 -->
+<section class="tier">
+  <div class="tier-mark">T0</div>
+  <div class="tier-head">
+    <div class="tier-label">Optional warm-up</div>
+    <div class="tier-title">Elementary number theory refresher</div>
+  </div>
+  <div class="tier-body">
+
+    <div class="entry">
+      <div class="entry-title">An Introduction to the Theory of Numbers</div>
+      <div class="entry-meta">Niven, Zuckerman &amp; Montgomery · Wiley · 5th ed., 1991 · ISBN 978-0471625469</div>
+      <p class="entry-note">Congruences, quadratic reciprocity, primitive roots — the vocabulary Apostol assumes you already have. Skim the relevant chapters only if elementary number theory feels rusty.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://search.worldcat.org/title/22561417" target="_blank" rel="noopener">WorldCat / library access</a>
+        <span class="no-link">no legitimate free copy — actively sold title</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">A Basic Course in Number Theory</div>
+      <div class="entry-meta">Shripad Garge · NPTEL / IIT Bombay · 64 lectures, free video</div>
+      <p class="entry-note">Full, complete video course — rare for this material. Builds elementary number theory up toward the prime number theorem and quadratic reciprocity. Slower-paced than Apostol; good as reinforcement if you want lecture-style review of T0 material.</p>
+      <div class="links">
+        <a class="link-chip video" href="https://www.youtube.com/playlist?list=PLEAYkSg4uSQ1zCXoJK7ZtWbz_WGmlLL1-" target="_blank" rel="noopener">YouTube playlist (64 lectures)</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIER 1 -->
+<section class="tier">
+  <div class="tier-mark">T1</div>
+  <div class="tier-head">
+    <div class="tier-label">Core text</div>
+    <div class="tier-title">Where almost all the work happens</div>
+  </div>
+  <div class="tier-body">
+
+    <div class="entry">
+      <div class="entry-title">Introduction to Analytic Number Theory</div>
+      <div class="entry-meta">Tom M. Apostol · Springer UTM · 1976</div>
+      <p class="entry-note">The standard on-ramp. Self-contained, assumes strong analysis and no prior number theory. Covers elementary methods, arithmetic functions, Dirichlet series, characters, and full proofs of Dirichlet's theorem and the Prime Number Theorem. Expect to spend most of your study time here.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://archive.org/details/introductiontoan00apos_0" target="_blank" rel="noopener">Borrow free — Internet Archive</a>
+        <a class="link-chip book" href="https://link.springer.com/book/10.1007/978-1-4757-5579-4" target="_blank" rel="noopener">Springer publisher page</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">18.785 Lecture Notes (2015–16 vintage)</div>
+      <div class="entry-meta">Andrew V. Sutherland · MIT · free notes</div>
+      <p class="entry-note">Companion notes, not a substitute. Lectures 15–16, "The Riemann zeta function and the Prime Number Theorem," are among the cleanest expositions of the Newman/Zagier contour-integral PNT proof anywhere — read alongside Apostol's own proof for a second angle on the hardest result in the book.</p>
+      <div class="links">
+        <a class="link-chip notes" href="https://math.mit.edu/classes/18.785/2015fa/" target="_blank" rel="noopener">math.mit.edu/classes/18.785/2015fa</a>
+        <span class="no-link">course site reorganizes yearly — search "MIT 18.785 Sutherland notes" if link has moved</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Analytic Number Theory — Oxford C3.8 (sample lectures)</div>
+      <div class="entry-meta">James Maynard · University of Oxford · 2 of 16 lectures public</div>
+      <p class="entry-note">Fields Medallist Maynard's actual undergraduate course tracks Apostol's later chapters almost exactly — prereqs are "complex analysis + elementary number theory," goal is proving PNT via zeta zeros. Only two lectures are public; watch the first as a map of the whole subject before you start.</p>
+      <div class="links">
+        <a class="link-chip video" href="https://www.youtube.com/watch?v=V3Y8vpJVG_g" target="_blank" rel="noopener">Introduction to analytic number theory</a>
+        <a class="link-chip video" href="https://www.youtube.com/watch?v=T7aqj1r7CsA" target="_blank" rel="noopener">Dirichlet series</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIER 2 -->
+<section class="tier">
+  <div class="tier-mark">T2</div>
+  <div class="tier-head">
+    <div class="tier-label">Second pass</div>
+    <div class="tier-title">Same theorems, different angle</div>
+  </div>
+  <div class="tier-body">
+
+    <div class="entry">
+      <div class="entry-title">Multiplicative Number Theory</div>
+      <div class="entry-meta">Harold Davenport, rev. Hugh L. Montgomery · Springer GTM 74 · 3rd ed., 2000</div>
+      <p class="entry-note">Shorter and denser than Apostol. Covers similar core ground but pushes further into the zero-free region and explicit formula. Re-proving theorems you already know, by a different route, is where real fluency starts.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://link.springer.com/book/10.1007/978-1-4757-5927-3" target="_blank" rel="noopener">Springer publisher page</a>
+        <span class="no-link">no legitimate free copy</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">The Prime Number Theorem</div>
+      <div class="entry-meta">G.J.O. Jameson · LMS Student Texts 53 · Cambridge, 2003</div>
+      <p class="entry-note">Slim and focused entirely on PNT and its variants, including the elementary (Selberg–Erdős) proof and PNT for arithmetic progressions. Good if you want to dwell on this one result before moving on.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://www.cambridge.org/core/series/london-mathematical-society-student-texts/items" target="_blank" rel="noopener">Cambridge Core — LMS Student Texts</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">246B, Notes 4 — The Riemann zeta function and the prime number theorem</div>
+      <div class="entry-meta">Terence Tao · blog notes, free</div>
+      <p class="entry-note">The best single piece of writing I know for the "why does ζ have to be involved" intuition. Read whenever the PNT machinery starts feeling like a bag of tricks rather than a structure.</p>
+      <div class="links">
+        <a class="link-chip notes" href="https://terrytao.wordpress.com/2021/02/12/246b-notes-4-the-riemann-zeta-function-and-the-prime-number-theorem/" target="_blank" rel="noopener">terrytao.wordpress.com</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIER 3 -->
+<section class="tier">
+  <div class="tier-mark">T3</div>
+  <div class="tier-head">
+    <div class="tier-label">Graduate breadth</div>
+    <div class="tier-title">Toward the research literature</div>
+  </div>
+  <div class="tier-body">
+
+    <div class="entry">
+      <div class="entry-title">Introduction to Analytic and Probabilistic Number Theory</div>
+      <div class="entry-meta">Gérald Tenenbaum · AMS GSM 163 · 3rd ed., 2015</div>
+      <p class="entry-note">Broader and more modern than Apostol/Davenport — brings in probabilistic number theory, mean values of multiplicative functions, and sieve basics. A natural bridge before Montgomery &amp; Vaughan.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://www.ams.org/publications/authors/books/postpub/gsm-163" target="_blank" rel="noopener">AMS author page</a>
+        <a class="link-chip book" href="https://bookstore.ams.org/view?ProductCode=GSM/163" target="_blank" rel="noopener">AMS Bookstore</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Multiplicative Number Theory I: Classical Theory</div>
+      <div class="entry-meta">Hugh L. Montgomery &amp; Robert C. Vaughan · Cambridge Studies in Advanced Mathematics 97 · 2007</div>
+      <p class="entry-note">Explicitly written to prepare readers "for intelligent reading of the more advanced research literature." Assumes only a standard math degree but moves fast — Vinogradov-type zero-free regions, large sieve basics, deeper L-function theory. The natural next step after T1/T2.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://archive.org/details/multiplicativenu0000mont" target="_blank" rel="noopener">Borrow free — Internet Archive</a>
+        <a class="link-chip book" href="https://www.cambridge.org/core/books/multiplicative-number-theory-i/4E45519B26115AEEA4839C6C38206ACD" target="_blank" rel="noopener">Cambridge Core</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Math 229 — Introduction to Analytic Number Theory, lecture notes</div>
+      <div class="entry-meta">Noam Elkies · Harvard · free notes</div>
+      <p class="entry-note">Informal, opinionated companion notes at roughly this level — a useful cross-check when a Tenenbaum or Montgomery–Vaughan argument feels terse.</p>
+      <div class="links">
+        <a class="link-chip notes" href="https://people.math.harvard.edu/~elkies/M229.15/" target="_blank" rel="noopener">people.math.harvard.edu/~elkies/M229.15</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIER 4 -->
+<section class="tier">
+  <div class="tier-mark">T4</div>
+  <div class="tier-head">
+    <div class="tier-label">Pick a branch</div>
+    <div class="tier-title">Specialized directions</div>
+  </div>
+  <div class="tier-body">
+
+    <div class="entry">
+      <div class="entry-title">An Introduction to Sieve Methods and Their Applications</div>
+      <div class="entry-meta">Alina Carmen Cojocaru &amp; M. Ram Murty · Cambridge, LMS Student Texts 66</div>
+      <p class="entry-note">The gentler entry into sieve theory — Brun, Selberg — before tackling Greaves below.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://www.cambridge.org/core/books/an-introduction-to-sieve-methods-and-their-applications/" target="_blank" rel="noopener">Cambridge Core</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Sieves in Number Theory</div>
+      <div class="entry-meta">George Greaves · Springer, Ergebnisse der Mathematik</div>
+      <p class="entry-note">Comprehensive treatment once the basics from Cojocaru–Murty feel solid.</p>
+      <div class="no-link">publisher: link.springer.com (search title)</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">The Hardy-Littlewood Method</div>
+      <div class="entry-meta">R.C. Vaughan · Cambridge Tracts in Mathematics 125 · 2nd ed.</div>
+      <p class="entry-note">The circle method — Waring's problem, Goldbach. A genuinely different flavor of analytic technique from everything above.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://www.cambridge.org/core/books/hardylittlewood-method/" target="_blank" rel="noopener">Cambridge Core</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">The Theory of the Riemann Zeta-Function</div>
+      <div class="entry-meta">E.C. Titchmarsh, rev. D.R. Heath-Brown · Oxford, 2nd ed.</div>
+      <p class="entry-note">The classical deep-RH reference — dense, exhaustive, the book everyone eventually opens for a precise statement about zeta's zeros.</p>
+      <span class="no-link">no legitimate free copy</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Analytic Number Theory</div>
+      <div class="entry-meta">Henryk Iwaniec &amp; Emmanuel Kowalski · AMS Colloquium Publications 53 · 2004</div>
+      <p class="entry-note">Encyclopedic — often treated as the field's reference text rather than read cover to cover. Many consider this the natural ceiling of a self-study path before specializing into research.</p>
+      <div class="links">
+        <a class="link-chip book" href="https://bookstore.ams.org/coll-53" target="_blank" rel="noopener">AMS Bookstore</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title">Sieve methods — Distinguished Lecture Series talk</div>
+      <div class="entry-meta">James Maynard · Bristol, 2024 · free video</div>
+      <p class="entry-note">A colloquium-style overview of what sieve methods are and what they can (and can't) say about primes. Good motivation-builder before committing to the sieves branch.</p>
+      <div class="links">
+        <span class="no-link">search "James Maynard Bristol Distinguished Lecture sieve methods 2024" — listing page, not a direct stable video URL</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="aside">
+  <strong>A note on the gaps.</strong> Several canonical texts here (Davenport, Niven–Zuckerman–Montgomery, Titchmarsh) are still actively sold and under copyright, so no legitimate free full-text version exists — publisher pages are linked instead of the pirated PDFs that turn up in general search. Apostol and Montgomery–Vaughan are both legally borrowable through Internet Archive's lending program, which is the real exception. For the rest, university or public library access — often free via interlibrary loan — is the legitimate route. Good full video courses for analytic number theory specifically are genuinely rare online; most of what's listed here is either a complete free course at a more elementary level, or a small set of sample/orientation lectures from the real thing.
+</div>
+
+<footer>
+  <span>Basic → advanced reading order: Apostol → Davenport → Tenenbaum → Montgomery &amp; Vaughan → Iwaniec–Kowalski, branching at T4</span>
+  <span>Compiled June 2026</span>
+</footer>
+
+</body>
+</html>
